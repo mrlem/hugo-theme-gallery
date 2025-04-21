@@ -38,6 +38,12 @@
         <figure style="background-color: {{ $color }}; aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
           <img class="lazyload" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
         </figure>
+        <span class="pswp-caption-content">
+          {{ if $.Site.Params.showDate }}
+            {{ with .Date }}{{ . | time.Format "02/01/2006 à 15:04" }}<br /><br />{{ end }}
+          {{ end }}
+          {{ with .Title }}{{ . }}<br /><hr />{{ end }}
+        </span>
         <meta itemprop="contentUrl" content="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}" />
         {{ with site.Params.Author }}
           <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
